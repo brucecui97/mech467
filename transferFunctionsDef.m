@@ -21,6 +21,6 @@ s = tf("s");
 currentSensorGain = Sg;
 pWMAmplifier = Kvp + Kvi/s;
 backEmfConstant = Kb;
-electricalWindingOfMotor = 4;
+electricalWindingOfMotor = 1/(La*s+Ra);
 motorConstant = Kt;
 mechanicalBlock = 6;
