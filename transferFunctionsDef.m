@@ -31,3 +31,20 @@ backEmfConstant = Kb;
 electricalWindingOfMotor = 1/(La*s+Ra);
 motorConstant = Kt;
 mechanicalBlock = 1/(Jeq*s+B);
+
+%% plot transfer functions for Im2Ws
+Im2Ws = motorConstant * mechanicalBlock;
+step(Im2Ws);
+margin(Im2Ws);
+
+%% plot transfer functions for Iin2Im
+Iin2Im = minreal(pWMAmplifier*electricalWindingOfMotor/(1+pWMAmplifier*electricalWindingOfMotor+electricalWindingOfMotor*motorConstant*mechanicalBlock*backEmfConstant));
+step(Iin2Im);
+margin(Iin2Im);
+bandwidth(Iin2Im)
+dcgain(Iin2Im)
+
+%% plot transfer function for Vin to Ws
+Vin2Ws = currentSensorGain * Iin2Im * Im2Ws;
+step(Vin2Ws);
+bode(Vin2Ws);
