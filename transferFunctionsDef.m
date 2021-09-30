@@ -21,6 +21,7 @@ rs = ds/2;
 Jtable = mt*(hp/(2*pi))^2;
 JLeadScrew = 1/2*(pi*rs^2*Ls*ps)*rs^2;
 Jeq = Jtable + JLeadScrew + Jm + Jenc + Jcoup + Jtach;
+B = 0.006; %Nm/rad/s temp value but will be found later in lab
 
 %% define transfer functions
 s = tf("s");
@@ -29,4 +30,4 @@ pWMAmplifier = Kvp + Kvi/s;
 backEmfConstant = Kb;
 electricalWindingOfMotor = 1/(La*s+Ra);
 motorConstant = Kt;
-mechanicalBlock = 6;
+mechanicalBlock = 1/(Jeq*s+B);
