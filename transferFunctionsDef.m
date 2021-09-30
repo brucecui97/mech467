@@ -47,4 +47,10 @@ dcgain(Iin2Im)
 %% plot transfer function for Vin to Ws
 Vin2Ws = currentSensorGain * Iin2Im * Im2Ws;
 step(Vin2Ws);
-bode(Vin2Ws);
+margin(Vin2Ws);
+bandwidth(Vin2Ws)
+[y,tout] = step(Vin2Ws/s/dcgain(Vin2Ws));%ramp response
+plot(linspace(0,50,1000),linspace(0,50,1000));
+hold on
+plot(tout,y)
+dcgain(Vin2Ws)
