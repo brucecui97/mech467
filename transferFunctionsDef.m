@@ -32,6 +32,13 @@ electricalWindingOfMotor = 1/(La*s+Ra);
 motorConstant = Kt;
 mechanicalBlock = 1/(Jeq*s+B);
 
+% currentSensorGain = 1;
+% pWMAmplifier = 2;
+% backEmfConstant = 3;
+% electricalWindingOfMotor =4;
+% motorConstant = 5;
+% mechanicalBlock = 7;
+
 %% Td
 Td2Ws = -mechanicalBlock/(1+(-mechanicalBlock)*((1/(motorConstant*mechanicalBlock) + (backEmfConstant/pWMAmplifier))*motorConstant*electricalWindingOfMotor*(-pWMAmplifier)));
 
