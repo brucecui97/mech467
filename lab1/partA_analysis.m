@@ -77,4 +77,7 @@ forward_torques = [forwardTorque15,forwardTorque20, forwardTorque25, forwardTorq
 backward_torques = [backwardTorque15,backwardTorque20, backwardTorque25, backwardTorque30, backwardTorque35, backwardTorque40, backwardTorque50];
 plot(angular_speeds_radPerSec, forward_torques);
 
-test_B = (forward_torques(end)-forward_torques(1))/(angular_speeds_radPerSec(end)-angular_speeds_radPerSec(1));
+forward_fit = polyfit(angular_speeds_radPerSec,forward_torques,1);
+b_forward = forward_fit(1);
+backward_fit = polyfit(angular_speeds_radPerSec,backward_torques,1);
+b_backward = backward_fit(1);
