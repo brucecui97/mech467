@@ -1,0 +1,13 @@
+mmPerSec15 = load("15.mat");
+mmPerSec20 = load("20.mat");
+mmPerSec25 = load("25.mat");
+mmPerSec30 = load("30.mat");
+mmPerSec35 = load("35.mat");
+mmPerSec40 = load("40.mat");
+mmPerSec50 = load("50.mat");
+mmPerSec60 = load("60.mat");
+mmPerSec80 = load("80.mat");
+mmPerSec100 = load("100.mat");
+mmPerSec120 = load("120.mat");
+mmPerSec140 = load("140.mat");
+mmPerSec160 = load("160.mat");
