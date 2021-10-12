@@ -58,11 +58,40 @@ forwardTorque50 = mean(motorTorque_Nm50(1504:9988));
 backwardTorque50 = mean(motorTorque_Nm50(11530:20190));
 
 mmPerSec60 = load("60.mat").output;
+motorTorque_Nm60 = Kt *  mmPerSec60.CH1sig* currentSensorGain;
+plot(motorTorque_Nm60);
+forwardTorque60 = mean(motorTorque_Nm60(1504:9988));
+backwardTorque60 = mean(motorTorque_Nm60(12600:20000));
+
 mmPerSec80 = load("80.mat").output;
+motorTorque_Nm80 = Kt *  mmPerSec80.CH1sig* currentSensorGain;
+plot(motorTorque_Nm80);
+forwardTorque80 = mean(motorTorque_Nm80(1641:5409));
+backwardTorque80 = mean(motorTorque_Nm80(7033:10530));
+
 mmPerSec100 = load("100.mat").output;
+motorTorque_Nm100 = Kt *  mmPerSec100.CH1sig* currentSensorGain;
+plot(motorTorque_Nm100);
+forwardTorque100 = mean(motorTorque_Nm100(2480:5409));
+backwardTorque100 = mean(motorTorque_Nm100(7721:10390));
+
 mmPerSec120 = load("120.mat").output;
+motorTorque_Nm120 = Kt *  mmPerSec120.CH1sig* currentSensorGain;
+plot(motorTorque_Nm120);
+forwardTorque120 = mean(motorTorque_Nm120(2480:4547));
+backwardTorque120 = mean(motorTorque_Nm120(7721:8525));
+
 mmPerSec140 = load("140.mat").output;
+motorTorque_Nm140 = Kt *  mmPerSec140.CH1sig* currentSensorGain;
+plot(motorTorque_Nm140);
+forwardTorque140 = mean(motorTorque_Nm140(2657:4667));
+backwardTorque140 = mean(motorTorque_Nm140(6710:8803));
+
 mmPerSec160 = load("160.mat").output;
+motorTorque_Nm160 = Kt *  mmPerSec160.CH1sig* currentSensorGain;
+plot(motorTorque_Nm160);
+forwardTorque160 = mean(motorTorque_Nm160(2815:4823));
+backwardTorque160 = mean(motorTorque_Nm160(7225:8742));
 
 %%
 
@@ -71,13 +100,29 @@ voltage_v = mmPerSec15.CH1sig;
 motorCurrent_A = voltage_v * currentSensorGain;
 motorTorque_Nm = Kt * motorCurrent_A;
 
-linear_speeds_mmPerSec=[15,20,25,30,35,40,50];
+linear_speeds_mmPerSec=[15,20,25,30,35,40,50,60,80,100,120,140,160];
 angular_speeds_radPerSec = linear_speeds_mmPerSec/1000/hp*2*pi;
-forward_torques = [forwardTorque15,forwardTorque20, forwardTorque25, forwardTorque30, forwardTorque35, forwardTorque40, forwardTorque50];
-backward_torques = [backwardTorque15,backwardTorque20, backwardTorque25, backwardTorque30, backwardTorque35, backwardTorque40, backwardTorque50];
+forward_torques = [forwardTorque15,forwardTorque20, forwardTorque25, forwardTorque30, forwardTorque35, forwardTorque40, forwardTorque50, forwardTorque60, forwardTorque80, forwardTorque100,forwardTorque120,forwardTorque140,forwardTorque160 ];
+backward_torques = [backwardTorque15,backwardTorque20, backwardTorque25, backwardTorque30, backwardTorque35, backwardTorque40, backwardTorque50,backwardTorque60,backwardTorque80,backwardTorque100,backwardTorque120,backwardTorque140,backwardTorque160];
 plot(angular_speeds_radPerSec, forward_torques);
 
 forward_fit = polyfit(angular_speeds_radPerSec,forward_torques,1);
 b_forward = forward_fit(1);
-backward_fit = polyfit(angular_speeds_radPerSec,backward_torques,1);
+backward_fit = polyfit(-angular_speeds_radPerSec,backward_torques,1);
 b_backward = backward_fit(1);
+
+scatter(angular_speeds_radPerSec, forward_torques);
+hold on
+scatter(-angular_speeds_radPerSec, backward_torques);
+grid on
+
+x_negative = linspace(-angular_speeds_radPerSec(end),0,10000);
+plot(x_negative, polyval(backward_fit, x_negative));
+
+x_positive = linspace(0,angular_speeds_radPerSec(end),10000);
+plot(x_positive, polyval(forward_fit, x_positive))
+
+legend("forward_torques","backward_torques");
+title("torque vs angular velocity")
+xlabel("angular velocity (radians per second)");
+ylabel("torque from motor (Nm)")
