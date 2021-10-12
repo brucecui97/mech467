@@ -126,3 +126,7 @@ legend("forward_torques","backward_torques");
 title("torque vs angular velocity")
 xlabel("angular velocity (radians per second)");
 ylabel("torque from motor (Nm)")
+%% part 4
+W = linspace(-200,200,10000);
+scatter(W,sign(W))
+
