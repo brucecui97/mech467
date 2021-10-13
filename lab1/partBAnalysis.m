@@ -7,9 +7,17 @@ mew_k = 0.219;
 time = partBData.time;
 displacement_m = partBData.CH1out/1000;
 angular_position_theta = displacement_m/hp*2*pi;
+
+
+
 Ts = 0.0005; %s
 W_t = deriv(angular_position_theta, Ts);
 W_dot_t = deriv(W_t,Ts);
+
+% scatter(time, angular_position_theta);
+% hold on
+% scatter(time,W_t)
+% legend("angular_position","angular_velocity");
 
 lhs = Sg*Kt*partBData.CH1sig - Be*W_t-sign(W_t)*mew_k;
 rhs = Je*W_dot_t;
@@ -18,3 +26,5 @@ scatter(time,lhs)
 hold on
 scatter(time,rhs)
 legend("lhs","rhs");
+xlabel("sample number")
+ylabel("Nm")
