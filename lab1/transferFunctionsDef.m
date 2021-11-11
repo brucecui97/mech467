@@ -63,4 +63,8 @@ bandwidth(Vin2Ws)
 plot(linspace(0,50,1000),linspace(0,50,1000));
 hold on
 plot(tout,y)
+legend("ramp input", "system resposne to ramp input after scaling by DC gain")
+title("VinToWs Ramp Response")
+xlabel("time (s)")
+ylabel("input (voltage)")
 dcgain(Vin2Ws)

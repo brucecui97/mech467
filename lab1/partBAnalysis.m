@@ -22,9 +22,9 @@ W_dot_t = deriv(W_t,Ts);
 lhs = Sg*Kt*partBData.CH1sig - Be*W_t-sign(W_t)*mew_k;
 rhs = Je*W_dot_t;
 
-scatter(time,lhs)
+scatter(time,lhs, '.')
 hold on
-scatter(time,rhs)
+scatter(time,rhs, '.')
 legend("lhs","rhs");
-xlabel("sample number")
+xlabel("time (seconds) ")
 ylabel("Nm")

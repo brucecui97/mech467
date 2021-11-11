@@ -122,11 +122,9 @@ plot(x_negative, polyval(backward_fit, x_negative));
 x_positive = linspace(0,angular_speeds_radPerSec(end),10000);
 plot(x_positive, polyval(forward_fit, x_positive))
 
-legend("forward_torques","backward_torques");
-title("torque vs angular velocity")
+legend("forward torque","backward torques");
+title("Friction Curve - Motor torque vs Angular Velocity")
 xlabel("angular velocity (radians per second)");
 ylabel("torque from motor (Nm)")
-%% part 4
-W = linspace(-200,200,10000);
-scatter(W,sign(W))
+
 
