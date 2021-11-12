@@ -8,7 +8,7 @@ T = 0.0002;
 
 %% question1
 s = tf("s");
-continous_plant = Ka*Kt*(1/(Je*s+Be))*Ke/s;
+continousPlant = Ka*Kt*(1/(Je*s+Be))*Ke/s;
 
 b = [2904.286];
 a = [1, 8.743,0,0];
@@ -16,7 +16,7 @@ a = [1, 8.743,0,0];
 
 partial_fraction = r(1)/(s-p(1)) + r(2)/(s-p(2)) + r(3)/(s-p(3))^2
 
-discretePlant = c2d(continous_plant,T);
+discretePlant = c2d(continousPlant,T);
 
 %% question2
 
@@ -26,5 +26,37 @@ denominator = cell2mat(discretePlant.Denominator);
 
 stateSpacePlant = ss(A,B,C,D,T);
 
-%%question3
+%% question3
+
+%a
+rlocus(continousPlant)
+rlocus(discretePlant)
+
+%b
+margin(continousPlant)
+margin(discretePlant)
+
+%c
+hold on
+margin(c2d(continousPlant,0.02))
+margin(c2d(continousPlant,0.002))
+margin(c2d(continousPlant,0.0002))
+
+%% question4
+wout = linspace(-0.00001,1000,100000);
+[mag,phase,wout] = bode(discretePlant,wout);
+
+
+eps = 0.01;
+mag = squeeze(mag);
+phase = squeeze(phase);
+wout = squeeze(wout);
+
+W_60_indexes = find((wout-60).^2<eps);
+W_60_index = W_60_indexes(1);
+
+gainNeeded = 1/mag(W_60_index);
+
+%pick R4 = 3.9e+04 ohms
+
 
