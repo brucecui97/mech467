@@ -69,8 +69,8 @@ alpha = (-1-sin(desiredPhaseChangeRad))/(sin(desiredPhaseChangeRad)-1)
 tao = (1/wc_desired)/sqrt(alpha)
 
 compensator = (alpha*tao*s+1)/(tao*s+1)
-[Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T)*discretePlant);
+[Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T,'tustin')*discretePlant);
 
-Cs = compensator/abs(freqresp(c2d(compensator,T)*discretePlant,wc_desired));
-[Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T)*discretePlant);
+Cs = compensator/abs(freqresp(c2d(Cs,T,'tustin')*discretePlant,wc_desired));
+[Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T,'tustin')*discretePlant);
 
