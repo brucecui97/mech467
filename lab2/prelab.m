@@ -60,22 +60,17 @@ Kp = 1/mag(W_60_index);
 %pick R4 = 3.9e+04 ohms
 
 %% Question 5
-%first design the porportional term which we did in Q4
-%first design the porportional term
 
 wc_desired = 60*2*pi;
-plant_mag_at_wc_desired = abs(freqresp(discretePlant,wc_desired))
-Kp = 1/plant_mag_at_wc_desired;
 
-%pick Kp = 48.9636
-margin(Kp*discretePlant)
-
-%For lead compensator, we want 1/sqrt(alpha*tao) 
-% to equal wc
-
-alpha = 11
+%choose maxPhaseChange = 61 degrees
+desiredPhaseChangeRad = 61/180*pi;
+alpha = (-1-sin(desiredPhaseChangeRad))/(sin(desiredPhaseChangeRad)-1)
 tao = (1/wc_desired)/sqrt(alpha)
-% tao = 4.7987e-04
 
-Cs = Kp*1/sqrt(alpha)*(alpha*tao*s+1)/(tao*s+1)
-margin(Cs*Ps)
+compensator = (alpha*tao*s+1)/(tao*s+1)
+[Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T)*discretePlant);
+
+Cs = compensator/abs(freqresp(c2d(compensator,T)*discretePlant,wc_desired));
+[Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T)*discretePlant);
+
