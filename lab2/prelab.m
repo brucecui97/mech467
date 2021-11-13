@@ -55,8 +55,27 @@ wout = squeeze(wout);
 W_60_indexes = find((wout-60).^2<eps);
 W_60_index = W_60_indexes(1);
 
-gainNeeded = 1/mag(W_60_index);
+Kp = 1/mag(W_60_index);
 
 %pick R4 = 3.9e+04 ohms
 
+%% Question 5
+%first design the porportional term which we did in Q4
+%first design the porportional term
 
+wc_desired = 60*2*pi;
+plant_mag_at_wc_desired = abs(freqresp(discretePlant,wc_desired))
+Kp = 1/plant_mag_at_wc_desired;
+
+%pick Kp = 48.9636
+margin(Kp*discretePlant)
+
+%For lead compensator, we want 1/sqrt(alpha*tao) 
+% to equal wc
+
+alpha = 11
+tao = (1/wc_desired)/sqrt(alpha)
+% tao = 4.7987e-04
+
+Cs = Kp*1/sqrt(alpha)*(alpha*tao*s+1)/(tao*s+1)
+margin(Cs*Ps)
