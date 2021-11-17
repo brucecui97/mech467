@@ -58,7 +58,15 @@ W_60_index = W_60_indexes(1);
 Kp = 1/mag(W_60_index);
 
 %pick R4 = 3.9e+04 ohms
-
+plot(out.yesFrictionPControl.Time,out.yesFrictionPControl.Data)
+hold on
+plot(out.noFrictionPControl.Time,out.noFrictionPControl.Data)
+legend("yes friction in model", "no fiction in model");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+title("closed loop system step response");
+stepinfo(out.yesFrictionPControl.Data,out.yesFrictionPControl.Time)
+stepinfo(out.noFrictionPControl.Data,out.noFrictionPControl.Time)
 %% Question 5(a)
 
 wc_desired = 60*2*pi;
