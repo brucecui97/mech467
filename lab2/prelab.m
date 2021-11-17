@@ -59,7 +59,7 @@ Kp = 1/mag(W_60_index);
 
 %pick R4 = 3.9e+04 ohms
 
-%% Question 5
+%% Question 5(a)
 
 wc_desired = 60*2*pi;
 
@@ -69,8 +69,12 @@ alpha = (-1-sin(desiredPhaseChangeRad))/(sin(desiredPhaseChangeRad)-1)
 tao = (1/wc_desired)/sqrt(alpha)
 
 compensator = (alpha*tao*s+1)/(tao*s+1)
+[Gm,Pm,Wcg,Wcp] = margin(c2d(compensator,T,'tustin')*discretePlant);
+
+Cs = compensator/abs(freqresp(c2d(compensator,T,'tustin')*discretePlant,wc_desired));
 [Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T,'tustin')*discretePlant);
 
-Cs = compensator/abs(freqresp(c2d(Cs,T,'tustin')*discretePlant,wc_desired));
-[Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T,'tustin')*discretePlant);
+%K= 12.6576
+%margin(c2d(compensator*K,T,'tustin')*discretePlant)
 
+%% Question 5(b)
