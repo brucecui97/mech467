@@ -74,7 +74,11 @@ compensator = (alpha*tao*s+1)/(tao*s+1)
 Cs = compensator/abs(freqresp(c2d(compensator,T,'tustin')*discretePlant,wc_desired));
 [Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T,'tustin')*discretePlant);
 
-%K= 12.6576
+K= 12.6576;
 %margin(c2d(compensator*K,T,'tustin')*discretePlant)
 
 %% Question 5(b)
+
+Ki = wc_desired/10;
+IntegralController = (Ki+s)/s;
+margin(c2d(Cs*Ki,T,'tustin')*discretePlant);
