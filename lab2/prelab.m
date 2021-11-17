@@ -90,3 +90,22 @@ K= 12.6576;
 Ki = wc_desired/10;
 IntegralController = (Ki+s)/s;
 margin(c2d(Cs*Ki,T,'tustin')*discretePlant);
+
+plot(out.LLStep.Time,out.LLStep.Data)
+hold on
+plot(out.LLIStep.Time,out.LLIStep.Data)
+legend("LL", "LLI");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+title("closed loop system step response");
+
+scatter(out.LLRamp.Time,out.LLRamp.Data,'.')
+hold on
+scatter(out.LLIRamp.Time,out.LLIRamp.Data,'.')
+plot(out.LLIRamp.Time,out.LLIRamp.Time)
+legend("LL", "LLI","ramp_input");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+title("closed loop system ramp response");
+
+
