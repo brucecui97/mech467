@@ -5,7 +5,7 @@ Je = 7*10^(-4);
 Be = 0.00612;
 Ke = 20/(2*pi);
 T = 0.0002;
-
+mu = 0.3;
 %% question1
 s = tf("s");
 continousPlant = Ka*Kt*(1/(Je*s+Be))*Ke/s;
