@@ -26,6 +26,15 @@ denominator = cell2mat(discretePlant.Denominator);
 
 stateSpacePlant = ss(A,B,C,D,T);
 
+[yd,tOutd] = step(discretePlant);
+[yss,tOutss]=step(stateSpacePlant,'*');
+plot(tOutd,yd,'*','MarkerIndices',1:5000:length(yd))
+hold on
+plot(tOutss,yss)
+legend("discretePlant", "discrete stateSpacePlant");
+xlabel("time (seconds)");
+ylabel("Xa (mm)");
+title("step response of discre TF and SS")
 %% question3
 
 %a
@@ -80,6 +89,7 @@ compensator = (alpha*tao*s+1)/(tao*s+1)
 [Gm,Pm,Wcg,Wcp] = margin(c2d(compensator,T,'tustin')*discretePlant);
 
 Cs = compensator/abs(freqresp(c2d(compensator,T,'tustin')*discretePlant,wc_desired));
+LL = Cs;
 [Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T,'tustin')*discretePlant);
 
 K= 12.6576;
@@ -89,7 +99,8 @@ K= 12.6576;
 
 Ki = wc_desired/10;
 IntegralController = (Ki+s)/s;
-margin(c2d(Cs*Ki,T,'tustin')*discretePlant);
+LLI = Cs*IntegralController;
+margin(c2d(LLI,T,'tustin')*discretePlant);
 
 plot(out.LLStep.Time,out.LLStep.Data)
 hold on
@@ -108,4 +119,12 @@ xlabel("time(s)");
 ylabel("Xa (mm)");
 title("closed loop system ramp response");
 
+%% Question 6
+hold on
+bode(continousPlant)
+bode(LL);
+bode(LLI);
+bode(continousPlant*LL)
+bode(continousPlant*LLI)
+legend("continousPlant", "LL","LLI","continousPlant*LL","continousPlant*LLI");
 
