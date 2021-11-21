@@ -39,3 +39,5 @@ load('Kp_step.mat');
 load('lli_ramp.mat')
 load('ll_ramp.mat')
 load('Kp_ramp.mat')
+
+stepinfo(out.LLIStep.Data,out.LLIStep.Time)

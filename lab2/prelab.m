@@ -91,6 +91,8 @@ compensator = (alpha*tao*s+1)/(tao*s+1)
 Cs = compensator/abs(freqresp(c2d(compensator,T,'tustin')*discretePlant,wc_desired));
 LL = Cs;
 [Gm,Pm,Wcg,Wcp] = margin(c2d(Cs,T,'tustin')*discretePlant);
+margin(discretePlant)
+
 
 K= 12.6576;
 %margin(c2d(compensator*K,T,'tustin')*discretePlant)
@@ -146,6 +148,7 @@ xlabel("time(s)");
 ylabel("Xa (mm)");
 xlim([0,2])
 title("closed loop system step response");
+stepinfo(lli_step.output.CH1out,lli_step.output.time-0.5018)
 
 lli_ramp = load('lli_ramp.mat');
 plot(lli_ramp.output.time-0.5018,lli_ramp.output.CH1out/5);
