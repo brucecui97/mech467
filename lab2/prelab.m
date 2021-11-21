@@ -128,10 +128,4 @@ bode(continousPlant*LL)
 bode(continousPlant*LLI)
 legend("continousPlant", "LL","LLI","continousPlant*LL","continousPlant*LLI");
 
-%% lab
-load('lli_step.mat');
-load('ll_step.mat');
-load('Kp_step.mat');
-load('lli_ramp.mat')
-load('ll_ramp.mat')
-load('Kp_ramp.mat')
+
