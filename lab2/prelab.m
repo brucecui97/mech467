@@ -125,7 +125,78 @@ bode(continousPlant)
 bode(LL);
 bode(LLI);
 bode(continousPlant*LL)
+hold on
+
+margin(continousPlant*LL)
+margin(continousPlant*LL*1000)
+
 bode(continousPlant*LLI)
+hold on
+bode(continousPlant*LLI*s^2)
+xlim([-1000,1000])
 legend("continousPlant", "LL","LLI","continousPlant*LL","continousPlant*LLI");
 
+%% lab analsis
+lli_step = load('lli_step.mat');
+plot(lli_step.output.time-0.5018,lli_step.output.CH1out);
+hold on;
+plot(out.LLIStep.Time,out.LLIStep.Data)
+legend("Lab", "Simulation");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+xlim([0,2])
+title("closed loop system step response");
+
+lli_ramp = load('lli_ramp.mat');
+plot(lli_ramp.output.time-0.5018,lli_ramp.output.CH1out/5);
+hold on;
+plot(out.LLIRamp.Time,out.LLIRamp.Data)
+legend("LabOutput/5", "Simulation");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+xlim([0,2])
+title("closed loop system ramp response");
+
+ll_step = load('ll_step.mat');
+plot(ll_step.output.time-0.5018,ll_step.output.CH1out);
+hold on;
+plot(out.LLStep.Time,out.LLStep.Data)
+legend("Lab", "Simulation");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+xlim([0,2])
+title("closed loop system step response");
+
+ll_ramp = load('ll_ramp.mat')
+plot(ll_ramp.output.time-0.5018,ll_ramp.output.CH1out/5);
+hold on;
+plot(out.LLRamp.Time,out.LLRamp.Data)
+plot(out.LLRamp.Time,out.LLRamp.Time)
+legend("LabOutput/5", "Simulation","rampInput");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+xlim([0,2])
+title("closed loop system ramp response");
+
+Kp_step = load('Kp_step.mat');
+plot(Kp_step.output.time-0.5018,Kp_step.output.CH1out);
+hold on;
+plot(out.yesFrictionPControl.Time,out.yesFrictionPControl.Data)
+legend("Lab", "Simulation");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+xlim([0,2])
+title("closed loop system step response");
+
+
+Kp_ramp = load('Kp_ramp.mat')
+plot(Kp_ramp.output.time-0.5018,Kp_ramp.output.CH1out/5);
+hold on;
+plot(out.yesFrictionPControlRamp.Time,out.yesFrictionPControlRamp.Data)
+plot(out.yesFrictionPControlRamp.Time,out.yesFrictionPControlRamp.Time)
+legend("LabOutput/5", "Simulation","rampInput");
+xlabel("time(s)");
+ylabel("Xa (mm)");
+xlim([0,2])
+title("closed loop system Ramp response");
 
