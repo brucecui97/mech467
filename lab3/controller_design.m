@@ -32,22 +32,29 @@ LLIlowBandWidthX = getLLI(lowBandWidthWcX,PM,plantX);
 LLIlowBandWidthXD = c2d(LLIlowBandWidthX,Ts,'tustin');
 contlowXPole = pole(feedback(LLIlowBandWidthX*plantX,1))
 discreteLowXPole = pole(feedback(LLIlowBandWidthXD*discretePlantX,1));
+bandwidth(feedback(LLIlowBandWidthXD*discretePlantX,1))
+stepinfo(feedback(LLIlowBandWidthXD*discretePlantX,1))
 
 LLIlowBandWidthY = getLLI(lowBandWidthWcY,PM,plantY);
 LLIlowBandWidthYD = c2d(LLIlowBandWidthY,Ts,'tustin');
 contlowYPole = pole(feedback(LLIlowBandWidthY*plantY,1))
 discreteLowYPole = pole(feedback(LLIlowBandWidthYD*discretePlantY,1));
+bandwidth(feedback(LLIlowBandWidthYD*discretePlantY,1))
+stepinfo(feedback(LLIlowBandWidthYD*discretePlantY,1))
 
 LLIHighBandWidthX = getLLI(highBandWidthWcX,PM,plantX);
 LLIHighBandWidthXD = c2d(LLIHighBandWidthX,Ts,'tustin');
 contHighXPole = pole(feedback(LLIHighBandWidthX*plantX,1));
 discreteHighXPole = pole(feedback(LLIHighBandWidthXD*discretePlantX,1));
+bandwidth(feedback(LLIHighBandWidthXD*discretePlantX,1))
+stepinfo(feedback(LLIHighBandWidthXD*discretePlantX,1))
 
 LLIHighBandWidthY = getLLI(highBandWidthWcY,PM,plantY);
 LLIHighBandWidthYD = c2d(LLIHighBandWidthY,Ts,'tustin');
 contHighYPole = pole(feedback(LLIHighBandWidthY*plantY,1));
 discreteHighYPole = pole(feedback(LLIHighBandWidthYD*discretePlantY,1));
-
+bandwidth(feedback(LLIHighBandWidthYD*discretePlantY,1))
+stepinfo(feedback(LLIHighBandWidthYD*discretePlantY,1))
 
 LLIMisMatchBandWidthX = getLLI(mismatchedBandWidthWcX,PM,plantX);
 LLIMisMatchBandWidthY = getLLI(mismatchedBandWidthWcY,PM,plantY);
