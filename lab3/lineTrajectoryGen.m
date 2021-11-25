@@ -9,7 +9,7 @@ Ti=0.0001;   fc=200;   A=1000;   D=-1000;
 
 %% Linear Segment
     
-P1x=0;   P1y=0;   P2x=40;   P2y=30;
+P1x=40;   P1y=30;   P2x=60;   P2y=30;
 
 Ltot = sqrt((P2x-P1x)^2+(P2y-P1y)^2);
 T2 = Ltot/fc - (1/(2*A) - 1/(2*D))*fc;
@@ -58,8 +58,6 @@ hold on
 set(gca,'FontName','Euclid','Fontsize',12)
 xlabel('X [mm]','FontSize',20,'FontWeight','bold','interpreter','latex')
 ylabel('Y [mm]','FontSize',20,'FontWeight','bold','interpreter','latex')
-text(P1x,P1y,'$P_1$','FontSize',15,'FontWeight','bold','interpreter','latex')
-text(P2x,P2y,'$P_2$','FontSize',15,'FontWeight','bold','interpreter','latex')
 
 grid on
 grid minor
@@ -149,84 +147,3 @@ ax=gca;
 ax.GridLineStyle='--';
 ax.GridAlpha=0.5;
 xlim([min(t),max(t)])
-%% 
-
-
-% Plot of Displacement, Feedrate, and Acceleration of the Circular Segment
-figure
-subplot(3,1,1)
-plot(t3,L3,'b-','LineWidth',2)
-title('Displacement','FontSize',15,'fontweight','Bold','interpreter','latex')
-ylabel('Displacement [$mm$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-grid on
-ax=gca;
-ax.GridLineStyle='--';
-ax.GridAlpha=0.5;
-xlim([min(t3),max(t3)])
-
-subplot(3,1,2)
-plot(t3,f3,'b-','LineWidth',2)
-title('Feedrate','FontSize',15,'fontweight','Bold','interpreter','latex')
-ylabel('Feedrate [$mm/s$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-grid on
-ax=gca;
-ax.GridLineStyle='--';
-ax.GridAlpha=0.5;
-xlim([min(t3),max(t3)])
-
-subplot(3,1,3)
-plot(t3,a3,'b-','LineWidth',2)
-title('Acceleration','FontSize',15,'fontweight','Bold','interpreter','latex')
-ylabel('Acceleration [$mm/s^2$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-xlabel('Time [$s$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-grid on
-ax=gca;
-ax.GridLineStyle='--';
-ax.GridAlpha=0.5;
-xlim([min(t3),max(t3)])
-
-
-% Plot of Position, Velocity, and Acceleration of the Circular Segment in the x- and y-directions
-figure
-subplot(3,1,1)
-plot(t3,x3,'b-','LineWidth',2)
-hold on
-plot(t3,y3,'r--','LineWidth',2)
-hold off
-ylabel('Position [$mm$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-title('Position','FontSize',15,'fontweight','Bold','interpreter','latex')
-legend('x-axis','y-axis','FontSize',15,'FontWeight','bold','location','best','interpreter','latex')
-grid on
-ax=gca;
-ax.GridLineStyle='--';
-ax.GridAlpha=0.5;
-xlim([min(t3),max(t3)])
-
-subplot(3,1,2)
-plot(t3,x3_dot,'b-','LineWidth',2)
-hold on
-plot(t3,y3_dot,'r--','LineWidth',2)
-hold off
-ylabel('Velocity [$mm/s$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-title('Velocity','FontSize',15,'fontweight','Bold','interpreter','latex')
-legend('x-axis','y-axis','FontSize',15,'FontWeight','bold','location','best','interpreter','latex')
-grid on
-ax=gca;
-ax.GridLineStyle='--';
-ax.GridAlpha=0.5;
-xlim([min(t3),max(t3)])
-
-subplot(3,1,3)
-plot(t3,x3_2dot,'b-','LineWidth',2)
-hold on
-plot(t3,y3_2dot,'r--','LineWidth',2)
-hold off
-xlabel('Time [$s$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-ylabel('Acceleration [$mm/s^2$]','FontSize',15,'FontWeight','bold','interpreter','latex')
-title('Acceleration','FontSize',15,'fontweight','Bold','interpreter','latex')
-legend('x-axis','y-axis','FontSize',15,'FontWeight','bold','location','best','interpreter','latex')
-grid on
-ax=gca;
-ax.GridLineStyle='--';
-ax.GridAlpha=0.5;
-xlim([min(t3),max(t3)])
