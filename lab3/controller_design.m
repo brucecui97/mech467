@@ -14,6 +14,7 @@ s = tf("s");
 plantX = Kax*Ktx/(Jex*s+Bx)*(1/s)*Kex;
 plantY = Kay*Kty/(Jey*s+By)*(1/s)*Key;
 
+%%
 wc_desired = 20*2*pi;
 
 desiredPhaseChangeRad = 51/180*pi;
@@ -21,8 +22,6 @@ alpha = (-1-sin(desiredPhaseChangeRad))/(sin(desiredPhaseChangeRad)-1)
 tao = (1/wc_desired)/sqrt(alpha)
 
 compensator = (alpha*tao*s+1)/(tao*s+1)
-[Gm,Pm,Wcg,Wcp] = margin(compensator*plantX);
-
 Cs = compensator/abs(freqresp(compensator*plantX,wc_desired));
 LL = Cs;
 [Gm,Pm,Wcg,Wcp] = margin(LL*plantX);
