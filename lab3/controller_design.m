@@ -9,3 +9,7 @@ Kty = 0.49;
 Key = 1.59;
 Jey = 3*10^(-4)
 By = 0.0091;
+
+s = tf("s");
+plantX = Kax*Ktx/(Jex*s+Bx)*(1/s)*Kex;
+plantY = Kay*Kty/(Jey*s+By)*(1/s)*Key;
