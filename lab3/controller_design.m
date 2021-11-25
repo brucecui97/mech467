@@ -25,15 +25,29 @@ highBandWidthWcY = 40*2*pi;
 mismatchedBandWidthWcX = 40*2*pi;
 mismatchedBandWidthWcY = 20*2*pi;
 
-LLlowBandWidthX = getLL(lowBandWidthWcX,PM,plantX);
-LLlowBandWidthY = getLL(lowBandWidthWcX,PM,plantY);
+LLIlowBandWidthX = getLLI(lowBandWidthWcX,PM,plantX);
+LLIlowBandWidthY = getLLI(lowBandWidthWcX,PM,plantY);
 
-LLHighBandWidthX = getLL(highBandWidthWcX,PM,plantX);
-LLHighBandWidthY = getLL(highBandWidthWcY,PM,plantY);
+LLIHighBandWidthX = getLLI(highBandWidthWcX,PM,plantX);
+LLIHighBandWidthY = getLLI(highBandWidthWcY,PM,plantY);
 
-LLMisMatchBandWidthX = getLL(mismatchedBandWidthWcX,PM,plantX);
-LLMisMatchBandWidthY = getLL(mismatchedBandWidthWcY,PM,plantY);
+LLIMisMatchBandWidthX = getLLI(mismatchedBandWidthWcX,PM,plantX);
+LLIMisMatchBandWidthY = getLLI(mismatchedBandWidthWcY,PM,plantY);
 
-margin(getLLI(mismatchedBandWidthWcX,PM,plantX)*plantX)
+figure
+bode(LLIlowBandWidthX*plantX);
+hold on
+bode(LLIHighBandWidthX*plantX);
+hold off
+title("oepnloop system of x axis");
+legend("with LBW controller", "with HWB controller");
+
+figure
+bode(LLIlowBandWidthX*plantX/(1+LLIlowBandWidthX*plantX));
+hold on
+bode(LLIHighBandWidthX*plantX/(1+LLIHighBandWidthX*plantX));
+hold off
+title("close loop system of x axis");
+legend("with LBW controller", "with HWB controller");
 
 
