@@ -25,6 +25,14 @@ highBandWidthWcY = 40*2*pi;
 mismatchedBandWidthWcX = 40*2*pi;
 mismatchedBandWidthWcY = 20*2*pi;
 
+LLlowBandWidthX = getLL(lowBandWidthWcX,PM,plantX);
+LLlowBandWidthY = getLL(lowBandWidthWcX,PM,plantY);
+
+LLHighBandWidthX = getLL(highBandWidthWcX,PM,plantX);
+LLHighBandWidthY = getLL(highBandWidthWcY,PM,plantY);
+
+LLMisMatchBandWidthX = getLL(mismatchedBandWidthWcX,PM,plantX);
+LLMisMatchBandWidthY = getLL(mismatchedBandWidthWcY,PM,plantY);
 
 
 
