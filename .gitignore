@@ -34,3 +34,5 @@ octave-workspace
 *.pdf
 
 *.xlsx
+
+*.csv
