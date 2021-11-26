@@ -9,7 +9,7 @@ Ti=0.0001;   fc=200;   A=1000;   D=-1000;
 
 %% Linear Segment
     
-P1x=40;   P1y=30;   P2x=60;   P2y=30;
+P1x=0;   P1y=0;   P2x=40;   P2y=30;
 
 Ltot = sqrt((P2x-P1x)^2+(P2y-P1y)^2);
 T2 = Ltot/fc - (1/(2*A) - 1/(2*D))*fc;
