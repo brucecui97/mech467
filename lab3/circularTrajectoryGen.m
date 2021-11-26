@@ -1,6 +1,6 @@
 %% Mech 467 - Trajectory Generation - Example
 
-function [x3,y3] =circularTrajectoryGen(th_s, th_e, R,xc, yc)
+function [x3,y3,t3] =circularTrajectoryGen(th_s, th_e, R,xc, yc)
 
 Ti=0.0001;   fc=200;   A=1000;   D=-1000;
 

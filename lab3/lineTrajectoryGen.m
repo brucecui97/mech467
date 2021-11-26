@@ -1,6 +1,6 @@
 %% Mech 467 - Trajectory Generation - Example
 
-function [x,y] =lineTrajectoryGen(P1x, P1y, P2x,P2y)
+function [x,y,t] =lineTrajectoryGen(P1x, P1y, P2x,P2y)
 
 
 Ti=0.0001;   fc=200;   A=1000;   D=-1000;

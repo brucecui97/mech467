@@ -75,6 +75,15 @@ hold off
 title("close loop system of x axis");
 legend("with LBW controller", "with HWB controller");
 
+%% C
+
+[xline1,yline1,tline1] = lineTrajectoryGen(0,0,40,30);
+[xline2,yline2,tline2] = lineTrajectoryGen(40,30,60,30);
+[xc,yc, tc] = circularTrajectoryGen(pi,pi+2*pi,30,90,30);
+
+x = [xline1,xline2,xc];
+y = [yline1,yline2,yc];
+t = linspace(Ts,Ts*length(x),length(x))
 
 
 
