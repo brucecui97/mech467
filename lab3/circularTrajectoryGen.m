@@ -1,14 +1,12 @@
 %% Mech 467 - Trajectory Generation - Example
 
-clear
-close all
-clc
+function [x3,y3] =circularTrajectoryGen(th_s, th_e, R,xc, yc)
 
 Ti=0.0001;   fc=200;   A=1000;   D=-1000;
 
 %% Circular Segment
 
-th_s = pi;       th_e = pi+2*pi;    R = 30;     xc=90;      yc=30;
+%th_s = pi;       th_e = pi+2*pi;    R = 30;     xc=90;      yc=30;
 
 Ltot = R*(th_e-th_s);
 
@@ -164,3 +162,5 @@ ax=gca;
 ax.GridLineStyle='--';
 ax.GridAlpha=0.5;
 xlim([min(t3),max(t3)])
+close all
+end
