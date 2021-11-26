@@ -83,7 +83,12 @@ legend("with LBW controller", "with HWB controller");
 
 x = [xline1,xline2,xc];
 y = [yline1,yline2,yc];
-t = linspace(Ts,Ts*length(x),length(x))
+t = linspace(Ts,Ts*length(x),length(x));
+
+%% E
+
+% sample plot(out.xout.Data,out.yout.Data)
+
 
 
 
