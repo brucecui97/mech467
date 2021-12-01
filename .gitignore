@@ -36,3 +36,5 @@ octave-workspace
 *.xlsx
 
 *.csv
+
+lab3/traj.mat
