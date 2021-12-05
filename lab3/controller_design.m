@@ -90,7 +90,19 @@ traj.y = y;
 save traj traj
 %% E
 
-% sample plot(out.xout.Data,out.yout.Data)
+figure
+plot(out.xTrackingError)
+hold on;
+plot(out.xTrackingError1);
+legend("low band width x LLI", "high bandwidth x LLI");
+title("x tracking error over time")
+
+figure
+plot(out.yTrackingError)
+hold on;
+plot(out.yTrackingError1);
+legend("low band width y LLI", "high bandwidth y LLI");
+title("y Tracking Error vs time")
 
 
 
