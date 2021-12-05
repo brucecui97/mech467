@@ -57,7 +57,11 @@ bandwidth(feedback(LLIHighBandWidthYD*discretePlantY,1))
 stepinfo(feedback(LLIHighBandWidthYD*discretePlantY,1))
 
 LLIMisMatchBandWidthX = getLLI(mismatchedBandWidthWcX,PM,plantX);
+LLIMisMatchBandWidthXD = c2d(LLIMisMatchBandWidthX,Ts,'tustin');
+
 LLIMisMatchBandWidthY = getLLI(mismatchedBandWidthWcY,PM,plantY);
+LLIMisMatchBandWidthYD = c2d(LLIMisMatchBandWidthY,Ts,'tustin');
+
 
 figure
 bode(LLIlowBandWidthX*plantX);
@@ -88,8 +92,7 @@ traj.t = t;
 traj.x = x;
 traj.y = y;
 save traj traj
-%% E
-
+%% E.1
 figure
 plot(out.xTrackingError)
 hold on;
@@ -103,6 +106,123 @@ hold on;
 plot(out.yTrackingError1);
 legend("low band width y LLI", "high bandwidth y LLI");
 title("y Tracking Error vs time")
+
+%% E.2
+R1 = [21.16,15.8];
+R2 = [40,30];
+R3 = [60,30];
+R4 = [110,55];
+winSize = 0.2;
+
+subplot(2,2,1)
+R = R1;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data);
+legend("reference","LLI low bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+subplot(2,2,2)
+R = R2;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data);
+legend("reference","LLI low bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+
+subplot(2,2,3)
+R = R3;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data);
+legend("reference","LLI low bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+
+subplot(2,2,4)
+R = R4;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data);
+legend("reference","LLI low bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+sgtitle("LLI low bandwidth controller");
+
+%%
+subplot(2,2,1)
+R = R1;
+plot(x,y)
+hold on
+plot(out.xout1.Data,out.yout1.Data);
+legend("reference","LLI high bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+subplot(2,2,2)
+R = R2;
+plot(x,y)
+hold on
+plot(out.xout1.Data,out.yout1.Data);
+legend("reference","LLI high bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+
+subplot(2,2,3)
+R = R3;
+plot(x,y)
+hold on
+plot(out.xout1.Data,out.yout1.Data);
+legend("reference","LLI high bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+
+subplot(2,2,4)
+R = R4;
+plot(x,y)
+hold on
+plot(out.xout1.Data,out.yout1.Data);
+legend("reference","LLI high bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+sgtitle("LLI high bandwidth controller");
+
+
+%%
+subplot(2,2,1)
+R = R1;
+plot(x,y)
+hold on
+plot(out.xout2.Data,out.yout2.Data);
+legend("reference","LLI mismatched bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+subplot(2,2,2)
+R = R2;
+plot(x,y)
+hold on
+plot(out.xout2.Data,out.yout2.Data);
+legend("reference","LLI mismatched bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+
+subplot(2,2,3)
+R = R3;
+plot(x,y)
+hold on
+plot(out.xout2.Data,out.yout2.Data);
+legend("reference","LLI mismatched bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+
+
+subplot(2,2,4)
+R = R4;
+plot(x,y)
+hold on
+plot(out.xout2.Data,out.yout2.Data);
+legend("reference","LLI mismatched bandwidth actual")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+sgtitle("LLI mismatched bandwidth controller");
+
+%%
 
 
 
