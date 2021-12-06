@@ -222,8 +222,10 @@ legend("reference","LLI mismatched bandwidth actual")
 axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
 sgtitle("LLI mismatched bandwidth controller");
 
-%%
+%% E.3
 
-
-
-
+figure
+plot(out.xTrackingError.Time, sqrt(out.xTrackingError.Data.^2 + out.yTrackingError.Data.^2))
+title("contour error vs time for case 1 controller")
+xlabel("time(s)");
+ylabel("contour error (mm)");
