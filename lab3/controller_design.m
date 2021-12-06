@@ -229,3 +229,206 @@ plot(out.xTrackingError.Time, sqrt(out.xTrackingError.Data.^2 + out.yTrackingErr
 title("contour error vs time for case 1 controller")
 xlabel("time(s)");
 ylabel("contour error (mm)");
+
+%% F.2
+load fastTraj
+
+figure
+plot(out.xTrackingError,'o','LineWidth',0.1)
+hold on;
+plot(out.xTrackingError3,'LineWidth',1);
+legend("low band width x LLI 200 feedrate", "low bandwidth x LLI 250 feedrate");
+title("x tracking error over time")
+ylabel("tracking error (mm)")
+
+figure
+plot(out.yTrackingError,'o','LineWidth',0.1)
+hold on;
+plot(out.yTrackingError3,'LineWidth',1);
+legend("low band width y LLI 200 feedrate", "low bandwidth y LLI 250 feedrate");
+title("y Tracking Error vs time")
+ylabel("tracking error (mm)")
+
+%% F.3
+
+R1 = [21.16,15.8];
+R2 = [40,30];
+R3 = [60,30];
+R4 = [110,55];
+winSize = 0.2;
+
+subplot(2,2,1)
+R = R1;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data,'LineWidth',5);
+plot(out.xout3.Data,out.yout3.Data,'.','color', 'g','LineWidth',0.1);
+legend("reference","LLI low bandwidth 200 feedrate", "LLI low bandwidth 250 feedrate")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+
+subplot(2,2,2)
+R = R2;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data,'LineWidth',5);
+plot(out.xout3.Data,out.yout3.Data,'.','color', 'g','LineWidth',0.1);
+legend("reference","LLI low bandwidth 200 feedrate", "LLI low bandwidth 250 feedrate")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+
+subplot(2,2,3)
+R = R3;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data,'LineWidth',5);
+plot(out.xout3.Data,out.yout3.Data,'.','color', 'g','LineWidth',0.1);
+legend("reference","LLI low bandwidth 200 feedrate", "LLI low bandwidth 250 feedrate")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+subplot(2,2,4)
+R = R4;
+plot(x,y)
+hold on
+plot(out.xout.Data,out.yout.Data,'LineWidth',5);
+plot(out.xout3.Data,out.yout3.Data,'.','color', 'g','LineWidth',0.1);
+legend("reference","LLI low bandwidth 200 feedrate", "LLI low bandwidth 250 feedrate")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+sgtitle("How Feedrate affects LLI low bandwidth controller performance");
+
+%% G1.1
+load linecircle_lli.mat
+load linecircle_ppc.mat
+
+x_tracking_error = linecircle_lli.Y(1).Data - linecircle_lli.Y(3).Data;
+y_tracking_error = linecircle_lli.Y(2).Data - linecircle_lli.Y(4).Data;
+
+plot(out.xTrackingError);
+hold on;
+plot(linecircle_lli.X.Data-1, -x_tracking_error);
+legend("simulated tracking error", "experimentally determiend tracking error");
+ylabel("x position (mm)")
+title("x tracking error vs time");
+
+plot(out.yTrackingError);
+hold on;
+plot(linecircle_lli.X.Data-1, -y_tracking_error);
+legend("simulated tracking error", "experimentally determiend tracking error");
+ylabel("y position (mm)")
+title("y tracking error vs time");
+%% G1.2
+
+load linecircle_lli.mat
+load linecircle_ppc.mat
+
+plot(linecircle_lli.Y.Data)
+legend("lli", "reference")
+
+
+R1 = [21.16,15.8];
+R2 = [40,30];
+R3 = [60,30];
+R4 = [110,55];
+winSize = 0.2;
+
+subplot(2,2,1)
+R = R1;
+hold on
+plot(linecircle_lli.Y.Data)
+plot(out.xout.Data,out.yout.Data,'.','color', 'g','LineWidth',0.1);
+legend("lli actual", "reference", "lli simulated")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+
+subplot(2,2,2)
+R = R2;
+hold on
+plot(linecircle_lli.Y.Data)
+plot(out.xout.Data,out.yout.Data,'.','color', 'g','LineWidth',0.1);
+legend("lli actual", "reference", "lli simulated")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+
+subplot(2,2,3)
+R = R3;
+hold on
+plot(linecircle_lli.Y.Data)
+plot(out.xout.Data,out.yout.Data,'.','color', 'g','LineWidth',0.1);
+legend("lli actual", "reference", "lli simulated")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+subplot(2,2,4)
+R = R4;
+hold on
+plot(linecircle_lli.Y.Data)
+plot(out.xout.Data,out.yout.Data,'.','color', 'g','LineWidth',0.1);
+legend("lli actual", "reference", "lli simulated")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+sgtitle("Simulated for experimental result - LLI low bandwidth controller performance");
+
+%% G.2.1
+load bruce.mat
+
+x_tracking_error = bruce.Y(1).Data - bruce.Y(3).Data;
+y_tracking_error = bruce.Y(2).Data - bruce.Y(4).Data;
+
+contouringError = sqrt(x_tracking_error.^2 + y_tracking_error.^2);
+
+plot(bruce.X.Data,contouringError);
+title("contouring error plot for custom cutting pattern");
+xlabel("time (seconds)");
+ylabel("contour error (mm)")
+
+%% G.2.2
+
+subplot(2,2,1)
+R = [40.3,30.09];
+hold on
+plot(bruce.Y.Data)
+plot(out.xout4.Data,out.yout4.Data,'.','color', 'g','LineWidth',0.1);
+legend("lli actual", "reference", "lli simulated")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+
+subplot(2,2,2)
+R = [91.4,-0.58];
+hold on
+plot(bruce.Y.Data)
+plot(out.xout4.Data,out.yout4.Data,'.','color', 'g','LineWidth',0.1);
+legend("lli actual", "reference", "lli simulated")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+
+
+subplot(2,2,3)
+R = [120.1,30.47];
+hold on
+plot(bruce.Y.Data)
+plot(out.xout4.Data,out.yout4.Data,'.','color', 'g','LineWidth',0.1);
+legend("lli actual", "reference", "lli simulated")
+axis([R(1)-winSize,R(1)+winSize,R(2)-winSize,R(2)+winSize])
+xlabel("tool x position (mm)");
+ylabel("tool y position (mm)");
+
+sgtitle("Simulated for experimental result - LLI low bandwidth controller performance");
+
